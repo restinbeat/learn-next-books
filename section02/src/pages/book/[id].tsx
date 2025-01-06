@@ -19,21 +19,19 @@ const mockData = {
 export const getStaticPaths = () => {
 	return {
 		paths: [
-			{ params: { id: "1" } },
-			{ params: { id: "2" } },
-			{ params: { id: "3" } }
+			{ params: { id: '1' } },
+			{ params: { id: '2' } },
+			{ params: { id: '3' } },
 		],
-		fallback: true
-		// fallback option 
+		fallback: true,
+		// fallback option
 		// false: 404
 		// blocking: 즉시 생성 (like ssr) -> 서버 통신 지연시 페이지 렌더링 지연 -> true 옵션으로 대체
 		// true: 즉시 생성 + 페이지만 미리 반환
 	};
 };
 
-export const getStaticProps = async (
-	context: GetStaticPropsContext,
-) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
 	const id = context.params!.id;
 	const book = await fetchBook(Number(id));
 
@@ -50,23 +48,24 @@ export const getStaticProps = async (
 	};
 };
 
-function Page({
-	book,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+function Page({ book }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const router = useRouter();
-	
+
 	if (router.isFallback) {
 		return (
 			<>
 				<Head>
 					<title>NOMAD 북스</title>
-					<meta property='og:image' content='/thumbnail.png'/>
-					<meta property='og:title' content='NOMAD 북스'/>
-					<meta property='og:description' content='NOMAD 북스에 등록된 도서들을 만나보세요'/>
+					<meta property="og:image" content="/thumbnail.png" />
+					<meta property="og:title" content="NOMAD 북스" />
+					<meta
+						property="og:description"
+						content="NOMAD 북스에 등록된 도서들을 만나보세요"
+					/>
 				</Head>
 				<div>로딩중 입니다.</div>
 			</>
-		)
+		);
 	}
 	if (!book) return '문제가 발생했습니다. 다시 시도하세요.';
 	const { id, title, subTitle, author, publisher, description, coverImgUrl } =
@@ -76,9 +75,9 @@ function Page({
 		<>
 			<Head>
 				<title>{title}</title>
-				<meta property='og:image' content={coverImgUrl} />
-				<meta property='og:title' content={title} />
-				<meta property='og:description' content={description} />
+				<meta property="og:image" content={coverImgUrl} />
+				<meta property="og:title" content={title} />
+				<meta property="og:description" content={description} />
 			</Head>
 			<div className={style.container}>
 				<div

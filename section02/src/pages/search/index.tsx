@@ -41,9 +41,12 @@ function Page() {
 		<div>
 			<Head>
 				<title>NOMAD 북스 - 검색결과</title>
-				<meta property='og:image' content='/thumbnail.png'/>
-				<meta property='og:title' content='NOMAD 북스 - 검색결과'/>
-				<meta property='og:description' content='NOMAD 북스에 등록된 도서들을 만나보세요'/>
+				<meta property="og:image" content="/thumbnail.png" />
+				<meta property="og:title" content="NOMAD 북스 - 검색결과" />
+				<meta
+					property="og:description"
+					content="NOMAD 북스에 등록된 도서들을 만나보세요"
+				/>
 			</Head>
 			{books.map(book => (
 				<BookItem key={book.id} {...book} />
