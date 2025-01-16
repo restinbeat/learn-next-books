@@ -1,16 +1,15 @@
 import BookItem from '@/components/BookItem';
 import { BookData } from '@/types';
 
-export default async function Page(
-  props: {
-    searchParams: Promise<{
-      q?: string;
-    }>;
-  }
-) {
+export default async function Page(props: {
+  searchParams: Promise<{
+    q?: string;
+  }>;
+}) {
   const searchParams = await props.searchParams;
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${searchParams.q}`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${searchParams.q}`,
+    { cache: 'force-cache' }
   );
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
