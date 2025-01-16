@@ -5,7 +5,7 @@ import { BookData } from '@/types';
 async function Books() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
-    { cache: 'no-store' }
+    { cache: 'force-cache' }
     /*
       next.js (data cache)
 
