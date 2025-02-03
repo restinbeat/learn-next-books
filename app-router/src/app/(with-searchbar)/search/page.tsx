@@ -1,5 +1,6 @@
 import BookItem from '@/components/BookItem';
 import { BookData } from '@/types';
+import { delay } from '@/util/delay';
 
 // 특정 페이지에 유형을 강제로 Static, Dynamic 페이지로 설정
 // 1. auto : default option, 아무것도 강제하지 않음
@@ -14,6 +15,9 @@ export default async function Page(props: {
   }>;
 }) {
   const searchParams = await props.searchParams;
+
+  // 개발자 도구 3G로 변경해도됌
+  await delay(1500);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${searchParams.q}`,
     { cache: 'force-cache' }
