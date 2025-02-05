@@ -15,7 +15,7 @@ export default function Error({
   return (
     <div>
       <h3>오류가 발생했습니다.</h3>
-      <button onClick={() => reset}>다시시도</button>
+      <button onClick={() => window.location.reload()}>다시시도</button>
     </div>
   );
 }
